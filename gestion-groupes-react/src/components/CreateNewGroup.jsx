@@ -98,16 +98,18 @@ const CreateNewGroup = ({ handleCreateGroup }) => {
         ref={errorContainer}
         className={classes.errorContainer}
       >
-        <div className={classes.errorContent}>
-          <span>{errorMessage}</span>
-          <button 
-            type="button" 
-            className={classes.closeErrorButton}
-            onClick={handleCloseError}
-          >
-            ×
-          </button>
-        </div>
+        {errorMessage && (
+          <div className={classes.errorContent}>
+            <span>{errorMessage}</span>
+            <button 
+              type="button" 
+              className={classes.closeErrorButton}
+              onClick={handleCloseError}
+            >
+              ×
+            </button>
+          </div>
+        )}
       </div>
       
       {/* Boutons d'action */}
