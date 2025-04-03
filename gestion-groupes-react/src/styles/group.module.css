@@ -1,0 +1,175 @@
+.group {
+  background-color: #1a2a3a;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  position: relative;
+  min-height: 220px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.group:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+}
+
+.completeGroup {
+  background-color: #17293d;
+  box-shadow: 0 8px 20px rgba(33, 150, 243, 0.15);
+  border: 1px solid rgba(33, 150, 243, 0.15);
+}
+
+.completeGroup:hover {
+  box-shadow: 0 12px 28px rgba(33, 150, 243, 0.25);
+}
+
+.groupHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.groupHeader h3 {
+  margin: 0;
+  color: #4dabf5;
+  font-size: 1.5rem;
+  font-weight: 500;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.completeGroup .groupHeader h3 {
+  color: #64b5f6;
+}
+
+.deleteButton {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.05);
+  color: #e91e63;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  line-height: 1;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.deleteButton:hover {
+  background-color: rgba(233, 30, 99, 0.15);
+  transform: scale(1.1);
+}
+
+.memberGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.memberCell {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  padding: 10px 14px;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  transition: all 0.2s ease;
+  border-left: 3px solid #2196f3;
+}
+
+.memberCell:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  transform: translateX(2px);
+}
+
+.completeGroup .memberCell {
+  border-left: 3px solid #4fc3f7;
+}
+
+.memberName, .memberNameRepeat {
+  font-size: 15px;
+  color: #90caf9;
+  transition: color 0.2s ease;
+}
+
+.completeGroup .memberName, .completeGroup .memberNameRepeat {
+  color: #bbdefb;
+}
+
+.addMemberButton {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  background-color: #2196f3;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: white;
+  box-shadow: 0 4px 10px rgba(33, 150, 243, 0.3);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.addMemberButton:hover {
+  background-color: #1e88e5;
+  transform: scale(1.1);
+  box-shadow: 0 6px 14px rgba(33, 150, 243, 0.4);
+}
+
+.memberCount {
+  position: absolute;
+  bottom: 20px;
+  right: 70px;
+  width: 36px;
+  height: 36px;
+  background-color: #263238;
+  color: #90caf9;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border: 2px solid rgba(33, 150, 243, 0.3);
+}
+
+.completeCount {
+  background-color: #1a237e;
+  color: #bbdefb;
+  border: 2px solid rgba(33, 150, 243, 0.5);
+}
+
+.addMemberForm {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  right: 70px;
+  z-index: 10;
+}
+
+.input {
+  width: 100%;
+  padding: 10px 14px;
+  border: none;
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.input:focus {
+  background-color: rgba(255, 255, 255, 0.15);
+  outline: none;
+  box-shadow: 0 4px 12px rgba(33, 150, 243, 0.2);
+}

@@ -1,0 +1,31 @@
+.groups {
+  width: 100%;
+}
+
+.groupsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 24px;
+}
+
+.groupCard {
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform, opacity;
+}
+
+.emptyGroups {
+  text-align: center;
+  padding: 40px;
+  background-color: #1a2a3a;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  color: #90caf9;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.emptyGroups p:first-child {
+  font-size: 1.2rem;
+  margin-bottom: 16px;
+  color: #bbdefb;
+}
