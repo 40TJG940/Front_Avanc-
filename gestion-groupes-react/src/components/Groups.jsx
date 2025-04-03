@@ -18,9 +18,9 @@ const Groups = ({ groups, handleDeleteGroup, handleAddMemberToGroup }) => {
     <motion.div className={classes.groups}>
       <div className={classes.groupsGrid}>
         <AnimatePresence>
-          {groups.map((group, index) => (
+          {groups.map((group) => (
             <motion.div
-              key={`group-${index}`}
+              key={`group-${group.id}`}
               className={classes.groupCard}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -29,12 +29,12 @@ const Groups = ({ groups, handleDeleteGroup, handleAddMemberToGroup }) => {
               layout
             >
               <Group 
-                groupNumber={`G${index + 1}`}
-                groupListMember={group} 
-                onDelete={() => handleDeleteGroup(index)}
-                onAddMember={(member) => handleAddMemberToGroup(member, index)}
-                memberCount={group.length}
-                isComplete={group.length >= 5}
+                groupNumber={`G${group.id}`}
+                groupListMember={group.members} 
+                onDelete={() => handleDeleteGroup(group.id)}
+                onAddMember={(member) => handleAddMemberToGroup(member, group.id)}
+                memberCount={group.members.length}
+                isComplete={group.members.length >= 5}
               />
             </motion.div>
           ))}
