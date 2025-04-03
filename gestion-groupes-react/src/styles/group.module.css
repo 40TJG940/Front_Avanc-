@@ -9,6 +9,29 @@
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   border: 1px solid rgba(255, 255, 255, 0.05);
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.groupContent {
+  flex: 1;
+  overflow: auto;
+  margin-right: -5px; /* Compensation pour scroll */
+  padding-right: 5px;
+}
+
+.groupActions {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  background: linear-gradient(to top, rgba(26, 42, 58, 0.95), rgba(26, 42, 58, 0.7), rgba(26, 42, 58, 0));
+  z-index: 2;
 }
 
 .group:hover {
@@ -71,23 +94,10 @@
 .memberGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin-bottom: 60px; /* Espace pour les boutons du bas */
+  gap: 5px;
+  margin-bottom: 70px; /* Plus d'espace pour les boutons du bas */
   overflow: hidden;
-}
-
-.memberCell {
-  background-color: rgba(255, 255, 255, 0.05);
-  border-radius: 8px;
-  padding: 10px 14px;
-  position: relative;
-  display: flex;
-  justify-content: flex-start;
-  transition: all 0.2s ease;
-  border-left: 3px solid #2196f3;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+  padding: 5px;
 }
 
 .memberCell:hover {
@@ -99,13 +109,27 @@
   border-left: 3px solid #4fc3f7;
 }
 
+.memberCell {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  padding: 10px 14px;
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  transition: all 0.2s ease;
+  border-left: 3px solid #2196f3;
+  white-space: nowrap;
+  overflow: hidden;
+  margin-bottom: 5px;
+}
+
 .memberName {
   font-size: 15px;
   color: #90caf9;
   transition: color 0.2s ease;
-  text-overflow: ellipsis;
   overflow: hidden;
-  max-width: 90%;
+  text-overflow: ellipsis;
+  max-width: 100%;
 }
 
 .memberNameRepeat {
@@ -165,11 +189,15 @@
 
 .addMemberForm {
   position: absolute;
-  bottom: 20px;
-  left: 70px; /* Décalé pour éviter de chevaucher le compteur */
-  right: 70px; /* Décalé pour éviter de chevaucher le bouton d'ajout */
+  bottom: 10px;
+  left: 70px;
+  right: 70px;
   z-index: 10;
   display: flex;
+  background-color: rgba(26, 42, 58, 0.95);
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .input {
@@ -182,6 +210,7 @@
   transition: all 0.2s ease;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   text-overflow: ellipsis;
+  font-size: 14px;
 }
 
 .input:focus {

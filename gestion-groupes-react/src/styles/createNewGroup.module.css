@@ -1,4 +1,43 @@
-/* createNewGroup.module.css */
+.addButton {
+  background-color: rgba(33, 150, 243, 0.1);
+  color: #64b5f6;
+  border: 2px solid #2196f3;
+  position: relative;
+  overflow: hidden;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.addButton:hover {
+  background-color: rgba(33, 150, 243, 0.2);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(33, 150, 243, 0.2);
+}
+
+.createButton {
+  background-color: rgba(33, 150, 243, 0.05);
+  color: #42a5f5;
+  border: 2px solid #1e88e5;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.createButton:hover {
+  background-color: rgba(33, 150, 243, 0.15);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(33, 150, 243, 0.2);
+}
+
+.createButton:disabled {
+  color: #546e7a;
+  border-color: #37474f;
+  background-color: rgba(55, 71, 79, 0.2);
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}/* createNewGroup.module.css */
 .createNewGroup {
   padding: 20px;
 }
@@ -119,72 +158,4 @@
   text-align: center;
   letter-spacing: 0.5px;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.addButton {
-  background-color: rgba(33, 150, 243, 0.1);
-  color: #64b5f6;
-  border: 2px solid #2196f3;
-  position: relative;
-  overflow: hidden;
-}
-
-.addButton:hover {
-  background-color: rgba(33, 150, 243, 0.2);
-  transform: translateY(-3px);
-  box-shadow: 0 6px 15px rgba(33, 150, 243, 0.2);
-}
-
-.addButton:after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 5px;
-  height: 5px;
-  background: rgba(255, 255, 255, 0.5);
-  opacity: 0;
-  border-radius: 100%;
-  transform: scale(1, 1) translate(-50%);
-  transform-origin: 50% 50%;
-}
-
-.addButton:focus:not(:active)::after {
-  animation: ripple 1s ease-out;
-}
-
-@keyframes ripple {
-  0% {
-    transform: scale(0, 0);
-    opacity: 0.5;
-  }
-  20% {
-    transform: scale(25, 25);
-    opacity: 0.3;
-  }
-  100% {
-    opacity: 0;
-    transform: scale(40, 40);
-  }
-}
-
-.createButton {
-  background-color: rgba(33, 150, 243, 0.05);
-  color: #42a5f5;
-  border: 2px solid #1e88e5;
-}
-
-.createButton:hover {
-  background-color: rgba(33, 150, 243, 0.15);
-  transform: translateY(-3px);
-  box-shadow: 0 6px 15px rgba(33, 150, 243, 0.2);
-}
-
-.createButton:disabled {
-  color: #546e7a;
-  border-color: #37474f;
-  background-color: rgba(55, 71, 79, 0.2);
-  cursor: not-allowed;
-  transform: none;
-  box-shadow: none;
 }
