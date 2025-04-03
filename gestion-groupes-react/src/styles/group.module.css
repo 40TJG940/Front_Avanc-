@@ -1,3 +1,4 @@
+/* group.module.css */
 .group {
   background-color: #1a2a3a;
   border-radius: 12px;
@@ -7,6 +8,7 @@
   min-height: 220px;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   border: 1px solid rgba(255, 255, 255, 0.05);
+  overflow: hidden;
 }
 
 .group:hover {
@@ -70,6 +72,8 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 10px;
+  margin-bottom: 60px; /* Espace pour les boutons du bas */
+  overflow: hidden;
 }
 
 .memberCell {
@@ -78,9 +82,12 @@
   padding: 10px 14px;
   position: relative;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   transition: all 0.2s ease;
   border-left: 3px solid #2196f3;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .memberCell:hover {
@@ -92,10 +99,17 @@
   border-left: 3px solid #4fc3f7;
 }
 
-.memberName, .memberNameRepeat {
+.memberName {
   font-size: 15px;
   color: #90caf9;
   transition: color 0.2s ease;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  max-width: 90%;
+}
+
+.memberNameRepeat {
+  display: none; /* Masquer le duplicat du nom */
 }
 
 .completeGroup .memberName, .completeGroup .memberNameRepeat {
@@ -152,9 +166,10 @@
 .addMemberForm {
   position: absolute;
   bottom: 20px;
-  left: 20px;
-  right: 70px;
+  left: 70px; /* Décalé pour éviter de chevaucher le compteur */
+  right: 70px; /* Décalé pour éviter de chevaucher le bouton d'ajout */
   z-index: 10;
+  display: flex;
 }
 
 .input {
@@ -166,6 +181,7 @@
   color: white;
   transition: all 0.2s ease;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  text-overflow: ellipsis;
 }
 
 .input:focus {

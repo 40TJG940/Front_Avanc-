@@ -1,23 +1,37 @@
+/* createNewGroup.module.css */
 .createNewGroup {
-  padding: 16px;
+  padding: 20px;
 }
 
 .membersTagsContainer {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 16px;
-  min-height: 34px;
+  gap: 10px;
+  margin-bottom: 20px;
+  min-height: 40px;
 }
 
 .memberTag {
   display: inline-flex;
   align-items: center;
-  background-color: #333;
+  background-color: #1e88e5;
   color: white;
   border-radius: 20px;
-  padding: 6px 12px;
+  padding: 8px 14px;
   font-size: 14px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: fadeIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.memberTag:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
 
 .removeTagButton {
@@ -25,49 +39,71 @@
   border: none;
   color: white;
   font-size: 18px;
-  margin-left: 6px;
+  margin-left: 8px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 20px;
   height: 20px;
+  transition: all 0.2s ease;
+}
+
+.removeTagButton:hover {
+  transform: scale(1.2);
 }
 
 .input {
   width: 100%;
   padding: 15px;
   font-size: 16px;
-  border: 1px solid #e0e0e0;
-  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
   margin-bottom: 20px;
+  background-color: rgba(255, 255, 255, 0.05);
+  color: #e0e0e0;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.input:focus {
+  border-color: #2196f3;
+  background-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
 }
 
 .errorContainer {
-  background-color: #ffebee;
-  color: #e53935;
-  border-radius: 4px;
+  background-color: rgba(233, 30, 99, 0.1);
+  color: #f48fb1;
+  border-radius: 8px;
   padding: 0;
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.3s ease-in-out;
-  margin-bottom: 16px;
-  border-left: 4px solid #e53935;
+  transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  margin-bottom: 20px;
+  border-left: 4px solid #e91e63;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .errorContent {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 16px;
+  padding: 16px;
 }
 
 .closeErrorButton {
   background: none;
   border: none;
-  color: #e53935;
+  color: #f48fb1;
   font-size: 20px;
   cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.closeErrorButton:hover {
+  transform: scale(1.2);
+  color: #f06292;
 }
 
 .actionButtons {
@@ -79,35 +115,76 @@
 .addButton, .createButton {
   padding: 15px;
   font-weight: 500;
-  border-radius: 4px;
+  border-radius: 12px;
   text-align: center;
   letter-spacing: 0.5px;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .addButton {
-  background-color: #fff;
-  color: #4caf50;
-  border: 2px solid #4caf50;
+  background-color: rgba(33, 150, 243, 0.1);
+  color: #64b5f6;
+  border: 2px solid #2196f3;
+  position: relative;
+  overflow: hidden;
 }
 
 .addButton:hover {
-  background-color: rgba(76, 175, 80, 0.1);
+  background-color: rgba(33, 150, 243, 0.2);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(33, 150, 243, 0.2);
+}
+
+.addButton:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.5);
+  opacity: 0;
+  border-radius: 100%;
+  transform: scale(1, 1) translate(-50%);
+  transform-origin: 50% 50%;
+}
+
+.addButton:focus:not(:active)::after {
+  animation: ripple 1s ease-out;
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0, 0);
+    opacity: 0.5;
+  }
+  20% {
+    transform: scale(25, 25);
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(40, 40);
+  }
 }
 
 .createButton {
-  background-color: #fff;
-  color: #2196f3;
-  border: 2px solid #2196f3;
+  background-color: rgba(33, 150, 243, 0.05);
+  color: #42a5f5;
+  border: 2px solid #1e88e5;
 }
 
 .createButton:hover {
-  background-color: rgba(33, 150, 243, 0.1);
+  background-color: rgba(33, 150, 243, 0.15);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(33, 150, 243, 0.2);
 }
 
 .createButton:disabled {
-  color: #bdbdbd;
-  border-color: #bdbdbd;
-  background-color: #f5f5f5;
+  color: #546e7a;
+  border-color: #37474f;
+  background-color: rgba(55, 71, 79, 0.2);
   cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
 }

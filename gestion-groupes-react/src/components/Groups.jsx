@@ -1,94 +1,48 @@
-import { useState, memo } from 'react';
-import classes from '../styles/group.module.css';
+import { memo } from 'react';
+import Group from './Group.jsx';
+import classes from '../styles/groups.module.css';
+import { motion, AnimatePresence } from 'framer-motion'; // Utilisons AnimatePresence pour une meilleure animation
 
-const Group = ({ groupNumber, groupListMember, onDelete, onAddMember }) => {
-  const [isAdding, setIsAdding] = useState(false);
-  const [newMember, setNewMember] = useState('');
-
-  // Nombre de membres dans le groupe
-  const memberCount = groupListMember.length;
-
-  // Gestion de la soumission pour ajouter un nouveau membre
-  const handleAddMemberSubmit = (e) => {
-    e.preventDefault();
-    if (newMember.trim()) {
-      onAddMember(newMember);
-      setNewMember('');
-      setIsAdding(false);
-    }
-  };
-
-  // Gestion de l'appui sur Entrée dans le champ de texte
-  const handleKeyDown = (e) => {
-    if (e.key === 'Enter') {
-      handleAddMemberSubmit(e);
-    } else if (e.key === 'Escape') {
-      setIsAdding(false);
-      setNewMember('');
-    }
-  };
+const Groups = ({ groups, handleDeleteGroup, handleAddMemberToGroup }) => {
+  // Si aucun groupe n'existe encore
+  if (groups.length === 0) {
+    return (
+      <div className={classes.emptyGroups}>
+        <p>Aucun groupe n'a été créé pour le moment.</p>
+        <p>Utilisez le formulaire à gauche pour créer votre premier groupe.</p>
+      </div>
+    );
+  }
 
   return (
-    <div className={classes.group}>
-      <div className={classes.groupHeader}>
-        <h3>{groupNumber}</h3>
-        <button 
-          className={classes.deleteButton}
-          onClick={onDelete}
-          title="Supprimer ce groupe"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <polyline points="3 6 5 6 21 6"></polyline>
-            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-          </svg>
-        </button>
+    <motion.div className={classes.groups}>
+      <div className={classes.groupsGrid}>
+        <AnimatePresence>
+          {groups.map((group, index) => (
+            <motion.div
+              key={`group-${index}`}
+              className={classes.groupCard}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.8 }}
+              transition={{ duration: 0.3 }}
+              layout
+            >
+              <Group 
+                groupNumber={`G${index + 1}`}
+                groupListMember={group} 
+                onDelete={() => handleDeleteGroup(index)}
+                onAddMember={(member) => handleAddMemberToGroup(member, index)}
+                memberCount={group.length}
+                isComplete={group.length >= 5}
+              />
+            </motion.div>
+          ))}
+        </AnimatePresence>
       </div>
-
-      {/* Affichage des membres du groupe en tableau 2x2 */}
-      <div className={classes.memberGrid}>
-        {groupListMember.map((member, index) => (
-          <div key={`${groupNumber}-member-${index}`} className={classes.memberCell}>
-            <span className={classes.memberName}>{member}</span>
-            <span className={classes.memberNameRepeat}>{member}</span>
-          </div>
-        ))}
-      </div>
-
-      {/* Bouton pour ajouter un membre */}
-      <div className={classes.addMemberButton} onClick={() => setIsAdding(!isAdding)}>
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <line x1="12" y1="5" x2="12" y2="19"></line>
-          <line x1="5" y1="12" x2="19" y2="12"></line>
-        </svg>
-      </div>
-
-      {/* Nombre de membres */}
-      <div className={classes.memberCount}>
-        {memberCount}
-      </div>
-
-      {/* Formulaire pour ajouter un membre */}
-      {isAdding && (
-        <form onSubmit={handleAddMemberSubmit} className={classes.addMemberForm}>
-          <input
-            type="text"
-            value={newMember}
-            onChange={(e) => setNewMember(e.target.value)}
-            onKeyDown={handleKeyDown}
-            placeholder="Nom du nouveau membre"
-            autoFocus
-            className={classes.input}
-          />
-        </form>
-      )}
-    </div>
+    </motion.div>
   );
 };
 
 // Optimisation avec memo pour éviter les rendus inutiles
-export default memo(Group, (prevProps, nextProps) => {
-  return (
-    prevProps.groupNumber === nextProps.groupNumber &&
-    JSON.stringify(prevProps.groupListMember) === JSON.stringify(nextProps.groupListMember)
-  );
-});
+export default memo(Groups);
